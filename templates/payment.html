@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - Stock Prediction</title>
+
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #edf2f7;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .payment-container {
+            background-color: #ffffff;
+            padding: 2rem 3rem;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            max-width: 450px;
+            margin: 5rem auto;
+            animation: fadeIn 1.5s ease forwards;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: #333;
+            text-align: center;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        /* Style Razorpay default button */
+        .razorpay-payment-button {
+            width: 100%;
+            padding: 15px 20px;
+            background: linear-gradient(135deg, #f12711, #f5af19);
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 30px;
+        }
+
+        .razorpay-payment-button:hover {
+            background: linear-gradient(135deg, #d4145a, #fbb03b);
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .razorpay-payment-button:focus {
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(0, 183, 212, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            .payment-container {
+                padding: 2rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .payment-container {
+                padding: 1.5rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="payment-container">
+            <h2>Payment for {{ symbol }} Stock Prediction</h2>
+            <p class="text-center">Proceed with the payment to get your stock prediction results.</p>
+
+            <!-- Razorpay Payment Form -->
+            <form action="/verify_payment" method="POST">
+                <script src="https://checkout.razorpay.com/v1/checkout.js"
+                        data-key="{{ key }}"
+                        data-amount="{{ order['amount'] }}"
+                        data-currency="INR"
+                        data-order_id="{{ order['id'] }}"
+                        data-buttontext="Pay Now"
+                        data-name="Stock Prediction"
+                        data-description="Pay to predict stock prices"
+                        data-image="https://example.com/your_logo.png"
+                        data-prefill.name="{{ session['email'] }}"
+                        data-prefill.email="{{ session['email'] }}"
+                        data-theme.color="#F37254">
+                </script>
+            </form>
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Stock Prediction</title>
+
+    <style>
+        /* Global reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #edf2f7;
+            color: #333;
+            padding: 0;
+            margin: 0;
+            animation: fadeIn 1s ease-out; /* Page fade-in animation */
+        }
+
+        /* Fade-in effect */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Center content with Flexbox */
+        .min-h-screen {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            animation: slideIn 1s ease-out; /* Slide-in animation for the background */
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+            }
+
+            to {
+                transform: translateX(0);
+            }
+        }
+
+        .signup-container {
+            background-color: #ffffff;
+            padding: 2rem 3rem;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            max-width: 380px;
+            width: 100%;
+            margin: 1rem;
+            transition: all 0.3s ease-in-out;
+            opacity: 0;
+            animation: fadeInContainer 1.5s forwards; /* Fade-in effect for the container */
+        }
+
+        @keyframes fadeInContainer {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Hover effect for the signup container */
+        .signup-container:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: #333;
+            text-align: center;
+            margin-bottom: 1rem;
+            font-weight: bold;
+            animation: fadeInText 1s ease-out; /* Fade-in animation for the heading */
+        }
+
+        @keyframes fadeInText {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #555;
+        }
+
+        /* Input field styles */
+        input {
+            width: 100%;
+            padding: 14px;
+            margin-top: 8px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            box-sizing: border-box;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            animation: fadeInInput 1s ease-out; /* Input fade-in animation */
+        }
+
+        @keyframes fadeInInput {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        input:focus {
+            border-color: #4facfe;
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(79, 172, 254, 0.3);
+        }
+
+        /* Button styles */
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #4facfe;
+            color: white;
+            font-weight: 700;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+            animation: fadeInButton 1s ease-out; /* Button fade-in animation */
+        }
+
+        @keyframes fadeInButton {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        button:hover {
+            background-color: #3380b3;
+            transform: scale(1.05); /* Slightly scale the button on hover */
+        }
+
+        /* Forgot password and Sign Up links */
+        a {
+            color: #4facfe;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #3380b3;
+        }
+
+        p {
+            text-align: center;
+            font-size: 0.875rem;
+            color: #555;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .signup-container {
+                padding: 1.5rem 2rem;
+                margin: 2rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            button {
+                padding: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .signup-container {
+                padding: 1rem 1.5rem;
+                margin: 1rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            button {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Flexbox centering the content -->
+    <div class="min-h-screen">
+        <div class="signup-container">
+            <h2>Welcome to Stock Prediction</h2>
+            <p>Enter a stock symbol to predict its future prices.</p>
+
+            <!-- Stock Prediction Form -->
+            <form action="/predict" method="POST">
+                <div class="form-group">
+                    <label for="symbol">Stock Symbol</label>
+                    <input type="text" class="form-control" id="symbol" name="symbol" value="AAPL" required placeholder="Enter stock symbol">
+                </div>
+
+                <button type="submit">Predict</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

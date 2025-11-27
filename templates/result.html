@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Results</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom Styles -->
+    <style>
+        /* Add custom scrollable style for the predicted prices */
+        .predicted-prices {
+            max-height: 400px;  /* Adjust the height as per your needs */
+            overflow-y: scroll;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100">
+
+    <!-- Main Container -->
+    <div class="container py-10">
+        <!-- Row for Stacked Frames -->
+        <div class="row justify-content-center">
+            <!-- Right Frame (Price Trend Chart) -->
+            <div class="col-12 mb-5">
+                <div class="card shadow-lg bg-white rounded-lg overflow-hidden">
+                    <div class="card-body">
+                        <h5 class="text-xl font-semibold text-gray-800 mb-3">Price Trend:</h5>
+                        <div class="flex justify-center items-center">
+                            <!-- Display the base64 image here, adjusting size for a bigger chart -->
+                            <img src="data:image/png;base64,{{ plot_url }}" alt="Stock Trend" class="w-full max-w-2xl rounded-lg shadow-xl">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Left Frame (Predicted Prices) -->
+            <div class="col-12 mb-5">
+                <div class="card shadow-lg bg-white rounded-lg overflow-hidden">
+                    <div class="card-body">
+                        <div class="text-center mb-4">
+                            <h2 class="text-3xl font-semibold text-gray-800">Prediction Results for <span class="text-blue-600">{{ symbol }}</span></h2>
+                        </div>
+                        <!-- Predicted Prices Section -->
+                        <div class="predicted-prices mb-4">
+                            <h5 class="text-xl font-semibold text-gray-800 mb-3">Predicted Prices:</h5>
+                            <ul class="space-y-4">
+                                {% for date, price in predictions.items() %}
+                                <li class="bg-teal-200 p-4 rounded-lg text-teal-800 font-semibold shadow-lg">
+                                    <span class="text-sm text-gray-500">{{ date }}</span>: <span class="text-xl">${{ price }}</span>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Buttons Below the Frames -->
+        <div class="d-flex justify-content-between mt-6">
+            <!-- Back to Home Button -->
+            <a href="{{ url_for('home') }}" class="btn btn-outline-secondary px-6 py-3 rounded-lg text-gray-700 hover:bg-gray-100 transition duration-300">Back to Home</a>
+        </div>
+    </div>
+
+    <!-- Optional: Add Bootstrap JS for interactivity -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
