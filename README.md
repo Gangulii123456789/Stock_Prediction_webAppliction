@@ -30,12 +30,6 @@ pip install flask numpy pandas xgboost scikit-learn matplotlib razorpay alpha_va
 
 ⚠️ Use Python 3.10 or 3.11 (3.14 not supported)
 
-🔑 Set Your Keys (inside app.py)
-RAZORPAY_KEY_ID = "your_key_id"
-RAZORPAY_KEY_SECRET = "your_key_secret"
-ALPHA_VANTAGE_API_KEY = "your_api_key"
-SENDER_EMAIL = "your_gmail"
-SENDER_PASSWORD = "your_app_password"
 
 
 Get API Keys:
